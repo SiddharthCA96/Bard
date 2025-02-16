@@ -1,6 +1,7 @@
 import db from "@repo/db/client";
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt";
+import prisma from "@repo/db/client";
 
 export const authOptions = {
     providers: [
@@ -39,6 +40,14 @@ export const authOptions = {
                         password: hashedPassword
                     }
                 });
+
+                await prisma.balance.create({
+                    data: {
+                      userId: Number(user.id),
+                      amount: 0,
+                      locked:0,
+                    }
+                  });
             
                 return {
                     id: user.id.toString(),

@@ -1,11 +1,12 @@
 import express from "express";
 import db from "@repo/db/client";
 const app = express();
-
+app.use(express.json());
 app.post("/hdfcWebhook", async (req, res) => {
   //TODO: Add zod validation here?
 
   //TODO:check if this req come from hdfc bank use a webhook secret
+  //check if the req is in processing or not
   const paymentInformation: {
     token: string;
     userId: string;
@@ -16,6 +17,8 @@ app.post("/hdfcWebhook", async (req, res) => {
     amount: req.body.amount,
   };
   // Update balance in db, add txn
+  console.log(paymentInformation.userId);
+  
   try {
     await db.$transaction([
       db.balance.updateMany({
@@ -48,4 +51,4 @@ app.post("/hdfcWebhook", async (req, res) => {
   }
 });
 
-app.listen(3001);
+app.listen(3003);
