@@ -21,6 +21,9 @@ model User {
   password    String
   OnRampTransaction OnRampTransaction[]
   Balance Balance[]
+  //use name to differentiate btw ambigous relation ( two relations between the same two models)
+  sentTransfers P2Pransactions[] @relation(name: "FromUserRelation")
+  receivedTransfers P2Pransactions[] @relation(name: "ToUserRelation")
 }
 
 model OnRampTransaction{
@@ -40,13 +43,31 @@ model Balance {
   locked  Int    @default(0)
   user    User   @relation(fields: [userId], references: [id])
 }
+model P2Pransactions {
+  id Int @id @default(autoincrement())
+  amount Int
+  timestamp DateTime
+  senderId Int
+  receiverId Int
+  fromUser User @relation(name: "FromUserRelation",fields: [senderId],references: [id])
+  toUser User @relation(name: "ToUserRelation",fields: [receiverId],references: [id])
+}
+
 enum AuthType {
   Google
   Github
 }
-
 enum OnRampStatus {
   Success
   Failure
   Processing
+}
+
+enum P2PType {
+  Food
+  Travel
+  Education
+  Entertainment
+  Medicine
+  Telecom
 }
