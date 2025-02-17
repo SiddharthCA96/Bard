@@ -46,6 +46,8 @@ model Balance {
 model P2Pransactions {
   id Int @id @default(autoincrement())
   amount Int
+  status P2PStatus
+  type P2PType
   timestamp DateTime
   senderId Int
   receiverId Int
@@ -70,4 +72,10 @@ enum P2PType {
   Entertainment
   Medicine
   Telecom
+}
+
+enum P2PStatus {
+  Success
+  Failure
+  Processing
 }
