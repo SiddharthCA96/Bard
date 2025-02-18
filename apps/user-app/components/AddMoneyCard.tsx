@@ -52,12 +52,10 @@ export const AddMoney = () => {
           <Button
             onClick={async () => {
               try {
-                console.log("hit");
                 await createOnRampTransaction(value, provider);
-                console.log("after hit");
               } catch (error) {
                 console.error("Transaction failed:", error);
-            } finally {
+              } finally {
                 window.location.href = redirectUrl || "";
               }
             }}>
