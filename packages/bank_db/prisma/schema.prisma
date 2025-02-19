@@ -44,13 +44,6 @@ model BankTransaction {
   account       BankAccount @relation(fields: [accountId], references: [id])
   accountId     Int
 }
-// enum BankName {
-//   Velocity_Bank
-//   Nexus_Financial
-//   Zenith_Trust
-//   Quantum_Bank
-//   Stellar_Savings
-// }
 enum TransactionType {
   TRANSFER_TO_BANK
   TRANSFER_TO_WALLET

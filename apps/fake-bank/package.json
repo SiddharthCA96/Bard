@@ -11,9 +11,16 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@repo/bank_db":"*",
+    "@repo/bank_db": "*",
+    "@repo/zod-schema": "*",
     "@types/express": "^5.0.0",
+    "bcrypt": "^5.1.1",
     "esbuild": "^0.25.0",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "uuid": "^11.0.5",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2"
   }
 }
