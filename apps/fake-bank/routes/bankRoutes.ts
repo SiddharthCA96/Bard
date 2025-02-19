@@ -1,13 +1,12 @@
 import express from "express";
-
+import {accountCreate} from "../controllers/bankControllers"
 export const  bankRouter=express.Router();
 
 
 //create the bank account route
-bankRouter.post("/create",(req,res)=>{
-    //
-});
+console.log("inside routes.ts");
 
+bankRouter.post("/create", accountCreate);
 //bank to wallet transfer route
 bankRouter.post("/wtb",(req,res)=>{
     //

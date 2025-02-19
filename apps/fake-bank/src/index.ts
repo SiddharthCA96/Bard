@@ -6,6 +6,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/api/bank", bankRouter);
+console.log("✅ Routes Registered:");
 
 // Start the server
 app.listen(3004, () => {
