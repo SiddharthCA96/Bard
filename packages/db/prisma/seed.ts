@@ -1,8 +1,27 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+
 const prisma = new PrismaClient();
 
 async function main() {
+  const bankNames = [
+    "Velocity Bank",
+    "Nexus Financial",
+    "Zenith Trust",
+    "Quantum Bank",
+    "Stellar Savings",
+  ];
+
+  // Seeding banks
+  for (const name of bankNames) {
+    await prisma.bank.upsert({
+      where: { name },
+      update: {},
+      create: { name },
+    });
+  }
+  console.log("Banks seeded successfully!");
+
   const alice = await prisma.user.upsert({
     where: { number: "123455" },
     update: {},
@@ -41,12 +60,9 @@ async function main() {
   });
   console.log({ alice, bob });
 }
+
 main()
-  .then(async () => {
+  .catch((e) => console.error(e))
+  .finally(async () => {
     await prisma.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
   });

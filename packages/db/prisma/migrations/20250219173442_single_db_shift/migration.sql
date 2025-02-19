@@ -1,17 +1,8 @@
-/*
-  Warnings:
-
-  - Made the column `name` on table `User` required. This step will fail if there are existing NULL values in that column.
-
-*/
 -- CreateEnum
 CREATE TYPE "TransactionType" AS ENUM ('TRANSFER_TO_BANK', 'TRANSFER_TO_WALLET');
 
 -- CreateEnum
 CREATE TYPE "TransactionStatus" AS ENUM ('PENDING', 'COMPLETED', 'FAILED');
-
--- AlterTable
-ALTER TABLE "User" ALTER COLUMN "name" SET NOT NULL;
 
 -- CreateTable
 CREATE TABLE "Bank" (

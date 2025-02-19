@@ -2,7 +2,6 @@
 import db from "@repo/bank_db/client1";
 import { Request, Response } from "express";
 import { BankSchemaZod } from "../../../packages/zod-schema/dist";
-
 // import { BankSchema } from "@repo/zod-schema/bank";
 
 // function to create the new bank account
@@ -18,12 +17,12 @@ export const accountCreate = async (req: Request, res: Response):Promise<any> =>
         mssg: "Please give the right inputs",
       });
     }
-
+    const {userId,bankId}=valdidateData.data
     //create the new bank account
     const newAccount = await db.bankAccount.create({
       data: {
-        userId: valdidateData.data.userId,
-        bankId: valdidateData.data.bankId,
+        userId,
+        bankId,
         accountNumber: generateAccountNumber(),
         balance: 500,
       },
