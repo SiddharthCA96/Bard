@@ -16,5 +16,48 @@ datasource db {
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
-  name  String?
+  name  String
+  bankAccounts BankAccount[]
+}
+model Bank {
+  id Int @id @default(autoincrement())
+  name  String @unique
+  bankAccount BankAccount[]
+}
+model BankAccount {
+  id Int @id @default(autoincrement())
+  accountNumber String @unique
+  userId Int
+  user User @relation(fields: [userId],references: [id])
+  bankId Int 
+  balance     Decimal   @default(500.00)
+  bank Bank @relation(fields: [bankId],references: [id])
+  transactions BankTransaction[]
+}
+model BankTransaction {
+  id Int @id @default(autoincrement())
+  transactionId String    @unique
+  amount        Decimal
+  type          TransactionType
+  status        TransactionStatus
+  createdAt     DateTime  @default(now())
+  account       BankAccount @relation(fields: [accountId], references: [id])
+  accountId     Int
+}
+// enum BankName {
+//   Velocity_Bank
+//   Nexus_Financial
+//   Zenith_Trust
+//   Quantum_Bank
+//   Stellar_Savings
+// }
+enum TransactionType {
+  TRANSFER_TO_BANK
+  TRANSFER_TO_WALLET
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
 }

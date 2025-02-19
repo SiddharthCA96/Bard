@@ -18,7 +18,7 @@ app.post("/hdfcWebhook", async (req, res) => {
   };
   // Update balance in db, add txn
   console.log(paymentInformation.userId);
-  
+
   try {
     await db.$transaction([
       db.balance.updateMany({
@@ -50,5 +50,7 @@ app.post("/hdfcWebhook", async (req, res) => {
     });
   }
 });
-
-app.listen(3003);
+// Start the server
+app.listen(3003, () => {
+  console.log("Server is running on http://localhost:3003");
+});
