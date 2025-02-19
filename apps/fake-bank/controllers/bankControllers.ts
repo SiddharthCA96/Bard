@@ -1,5 +1,5 @@
 // import prisma from "@repo/bank_db/client";
-import db from "@repo/bank_db/client1";
+import db from "@repo/db/client";
 import { Request, Response } from "express";
 import { BankSchemaZod } from "../../../packages/zod-schema/dist";
 // import { BankSchema } from "@repo/zod-schema/bank";

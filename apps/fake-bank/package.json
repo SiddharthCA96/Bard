@@ -13,7 +13,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@repo/bank_db": "*",
+    "@repo/db": "*",
     "@repo/zod-schema": "*",
     "@types/express": "^5.0.0",
     "bcrypt": "^5.1.1",
